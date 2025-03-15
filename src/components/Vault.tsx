@@ -34,7 +34,6 @@ const Vault = () => {
         const resources = await PIXI.Assets.load([bg, door, doorOpen, handle, handleShadow]);
         console.log("Assets loaded:", resources);
 
-        // Check if resources exist
         if (!resources[bg] || !resources[door] || !resources[doorOpen] || !resources[handle] || !resources[handleShadow]) {
           console.error("Some assets failed to load!");
           return;
@@ -48,19 +47,16 @@ const Vault = () => {
 
         console.log("Assets loaded, creating sprites...");
 
-        // Create background
         const bgSprite = new PIXI.Sprite(bgTexture);
         bgSprite.width = app.current.screen.width;
         bgSprite.height = app.current.screen.height;
         app.current.stage.addChild(bgSprite);
 
-        // Create door sprite
         const doorSprite = new PIXI.Sprite(doorTexture);
         doorSprite.x = app.current.screen.width / 2 - doorSprite.width / 2;
         doorSprite.y = app.current.screen.height / 2 - doorSprite.height / 2;
         app.current.stage.addChild(doorSprite);
 
-        // Handle rotation sprite
         handleRotation.current = new PIXI.Sprite(handleTexture);
         handleRotation.current.x = app.current.screen.width / 2 - handleRotation.current.width / 2;
         handleRotation.current.y = app.current.screen.height / 2 + doorSprite.height / 2 + 20;
@@ -84,7 +80,6 @@ const Vault = () => {
 
         app.current.stage.addChild(handleRotation.current);
 
-        // Handle shadow sprite
         handleShadowSprite.current = new PIXI.Sprite(handleShadowTexture);
         handleShadowSprite.current.x = app.current.screen.width / 2 - handleShadowSprite.current.width / 2;
         handleShadowSprite.current.y = app.current.screen.height / 2 + doorSprite.height / 2 + 20;
@@ -93,7 +88,7 @@ const Vault = () => {
 
         console.log("PixiJS app initialized and sprites added...");
 
-        setIsAppReady(true); // App is now ready
+        setIsAppReady(true);
       }
     } catch (error) {
       console.error("Error during PixiJS initialization:", error);
@@ -107,20 +102,18 @@ const Vault = () => {
     return () => {
       if (app.current) {
         console.log("Destroying PixiJS app...");
-        // Remove event listeners
         if (handleRotation.current) {
           handleRotation.current.off("pointerdown");
           handleRotation.current.off("pointermove");
         }
-        // Destroy the app
         app.current.destroy(true, { children: true });
         app.current = null;
       }
     };
-  }, []); // Runs only once when the component mounts
+  }, []);
 
   useEffect(() => {
-    generateCombination(); // Generate combination when mounted
+    generateCombination();
   }, [generateCombination]);
 
   useEffect(() => {
@@ -128,13 +121,13 @@ const Vault = () => {
       console.log("Vault is open, triggering door animation...");
       gsap.to(handleShadowSprite.current, { alpha: 1, duration: 0.5 });
       gsap.to(handleRotation.current, { rotation: Math.PI, duration: 1 });
-      // Additional door open animations if needed
+      
     }
   }, [isOpen, isAppReady]);
 
   return (
     <div ref={appRef} style={{ position: "relative", width: "100%", height: "100%" }}>
-      {/* PixiJS canvas will be inserted here */}
+      
     </div>
   );
 };
