@@ -1,23 +1,41 @@
-How to Start the Project
+# DreamShot Project
 
-Follow these steps to set up and run the project locally:
+## Requirements
 
-    Clone the repository:
+Before you begin, make sure you have the following installed on your system:
 
-    git clone https://github.com/Iskren201/DreamShot-Project.git
-    cd DreamShot-Project
+- **Node.js** (version 14.x or later)
+- **npm** or **yarn** (package manager)
 
-    Install dependencies:
+## Getting Started
 
-    npm install
+### 1. Clone the repository
 
-    Start the development server:
+Start by cloning this repository to your local machine:
 
-    npm run dev
+```bash
+git clone https://github.com/Iskren201/DreamShot-Project.git
+cd DreamShot-Project
+```
 
-    Open the project:
+### 2. Install dependencies
 
-        The development server will start, and you can view the project in your browser at:
-        Copy
+To install the required dependencies, run one of the following commands:
 
-        http://localhost:5173
+```bash
+npm install
+# or
+yarn install
+```
+
+### 3. Start the development server
+
+Once the dependencies are installed, start the Vite development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+This will start the project, and you can view it at `http://localhost:3000`.
